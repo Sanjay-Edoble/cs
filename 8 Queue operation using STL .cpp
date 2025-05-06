@@ -1,52 +1,41 @@
 #include <iostream>
-#include <vector>
-#include <algorithm>
+#include <queue>
 
 int main() {
+    // Create a queue
+    std::queue<int> q;
 
-    std::vector<int> vec = {64, 34, 25, 12, 22, 11, 90};
+    // Enqueue elements
+    q.push(10);
+    q.push(20);
+    q.push(30);
 
+    // Print the size of the queue
+    std::cout << "Queue size: " << q.size() << std::endl;
 
-    std::cout << "Original vector: ";
-    for (int i : vec) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
+    // Peek the front element
+    std::cout << "Front element: " << q.front() << std::endl;
 
+    // Dequeue an element
+    q.pop();
 
-    std::sort(vec.begin(), vec.end());
+    // Print the size of the queue
+    std::cout << "Queue size after dequeue: " << q.size() << std::endl;
 
-    // Print the sorted vector
-    std::cout << "Sorted vector: ";
-    for (int i : vec) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
-
-
-    int target = 22;
-    auto it = std::find(vec.begin(), vec.end(), target);
-
-  
-    if (it != vec.end()) {
-        std::cout << "Element " << target << " found at index " << std::distance(vec.begin(), it) << std::endl;
+    // Check if the queue is empty
+    if (q.empty()) {
+        std::cout << "Queue is empty" << std::endl;
     } else {
-        std::cout << "Element " << target << " not found" << std::endl;
+        std::cout << "Queue is not empty" << std::endl;
     }
 
-
-    if (std::binary_search(vec.begin(), vec.end(), target)) {
-        std::cout << "Element " << target << " found using binary search" << std::endl;
-    } else {
-        std::cout << "Element " << target << " not found using binary search" << std::endl;
+    // Print the remaining elements
+    while (!q.empty()) {
+        std::cout << q.front() << " ";
+        q.pop();
     }
 
-    auto lower = std::lower_bound(vec.begin(), vec.end(), target);
-    auto upper = std::upper_bound(vec.begin(), vec.end(), target);
-
-    std::cout << "Lower bound of " << target << ": " << std::distance(vec.begin(), lower) << std::endl;
-    std::cout << "Upper bound of " << target << ": " << std::distance(vec.begin(), upper) << std::endl;
+    std::cout << std::endl;
 
     return 0;
 }
-
